@@ -10,7 +10,7 @@ class PrintReceiptTests {
 
     private val sale1 = Sale.from(
         SaleLine(1, Book("Harry Potter", Money(12.49))),
-        SaleLine(1, MusicCd("Metallica", Money(14.99))),
+        SaleLine(1, GenericItem("music CD", Money(14.99))),
         SaleLine(1, Food("Chocolate bar", Money(0.85))),
     ) to  """
        1 book: 12.49
