@@ -2,15 +2,20 @@ package com.luca.core
 
 class Receipt(private val receiptLines: List<ReceiptLine>) {
 
-    override fun toString(): String = description
+    val totalTaxes = receiptLines.fold(Money(0)){ acc, receiptLine ->
+        acc + receiptLine.taxCharge
+    }
 
-    val description = receiptLines.fold(""){ acc, line -> """$acc
+    override fun toString(): String = receiptLines
+        .fold(""){ acc, line ->
+            """$acc
             ${line.quantity} ${line.itemDescription}: ${line.taxedPrice}
-        """.trimIndent()
+            """.trimIndent()
     }.let {"""
             $it
-            Sales Taxes: 1.50
+            Sales Taxes: $totalTaxes
             Total: 29.83
         """.trimIndent()
     }
+
 }
