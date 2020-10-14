@@ -30,10 +30,21 @@ class PrintReceiptTests {
        Total: 10.20
     """.trimIndent()
 
+    private val sale3 = Sale.from(
+        SaleLine(1, Imported(Food("box of chocolates", Money(10)))),
+        SaleLine(1, Imported(GenericItem("bottle of perfume", Money(47.5))))
+    ) to  """
+       1 imported box of chocolates: 10.50
+       1 imported bottle of perfume: 54.65
+       Sales Taxes: 7.65
+       Total: 65.15
+    """.trimIndent()
+
     @TestFactory
     internal fun `GIVEN a sale WHEN i request for a receipt THEN it is printed as expected`() = listOf(
         sale1,
-        sale2
+        sale2,
+        sale3
     ).map{ (sale, expectedReceipt) ->
         DynamicTest.dynamicTest("receipt of $sale should be $expectedReceipt"){
             val receipt = sale.receipt()

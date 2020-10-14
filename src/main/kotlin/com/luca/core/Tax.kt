@@ -10,6 +10,8 @@ data class Tax(private val percentage: Double){
         return FiveCentsRounder.round(rawPercentageApplication)
     }
 
+    operator fun plus(tax: Tax): Tax = Tax(percentage + tax.percentage)
+
     companion object{
         fun notCharged() = Tax(0.0)
     }
