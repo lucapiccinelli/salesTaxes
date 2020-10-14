@@ -2,9 +2,9 @@ package com.luca.core
 
 class Receipt(private val receiptLines: List<ReceiptLine>) {
 
-    val totalTaxes = receiptLines.fold(Money(0)){ acc, receiptLine ->
-        acc + receiptLine.taxCharge
-    }
+    val totalTaxes = receiptLines.fold(Money(0)){ acc, receiptLine -> acc + receiptLine.taxCharge }
+
+    val saleTotal = receiptLines.fold(Money(0)) { acc, receiptLine -> acc + receiptLine.taxedPrice }
 
     override fun toString(): String = receiptLines
         .fold(""){ acc, line ->
@@ -14,7 +14,7 @@ class Receipt(private val receiptLines: List<ReceiptLine>) {
     }.let {"""
             $it
             Sales Taxes: $totalTaxes
-            Total: 29.83
+            Total: $saleTotal
         """.trimIndent()
     }
 
