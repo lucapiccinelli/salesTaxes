@@ -12,6 +12,5 @@ data class ReceiptLine(private val saleLine: SaleLine) {
     private fun applyTax() =
         saleLine.item.shelfPrice + tax()
 
-    private fun tax() =
-        Money(saleLine.item.shelfPrice.amount.multiply(BigDecimal(saleLine.item.taxPercentage.percentage), MathContext(2, RoundingMode.HALF_UP)))
+    private fun tax(): Money = saleLine.item.shelfPrice * saleLine.item.taxPercentage
 }
