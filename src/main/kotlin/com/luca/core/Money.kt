@@ -11,5 +11,7 @@ class Money(private val amount: BigDecimal){
 
     operator fun plus(money: Money): Money = Money(amount + money.amount)
 
-    operator fun times(taxPercentage: Tax): Money = taxPercentage.chargeForAmount(amount)
+    operator fun times(taxPercentage: Tax): Money =
+        taxPercentage.chargeForAmount(amount)
+        .let { Money(it) }
 }
