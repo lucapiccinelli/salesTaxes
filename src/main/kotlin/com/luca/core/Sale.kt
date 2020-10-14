@@ -5,10 +5,8 @@ class Sale(private val saleLines: Collection<SaleLine>) {
         fun from(vararg saleLines: SaleLine) = Sale(saleLines.toList())
     }
 
-    fun receipt(): Receipt {
-        return saleLines
-            .map { ReceiptLine(it) }
-            .let { Receipt(it) }
-    }
+    fun receipt(): Receipt = saleLines
+        .map { ReceiptLine(it) }
+        .let { Receipt(it) }
 }
 

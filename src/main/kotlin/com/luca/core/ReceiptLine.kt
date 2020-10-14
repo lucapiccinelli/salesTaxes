@@ -10,8 +10,7 @@ data class ReceiptLine(private val saleLine: SaleLine) {
     val taxCharge: Money = tax()
     val taxedPrice: Money = applyTax()
 
-    private fun applyTax() =
-        saleLine.item.shelfPrice + taxCharge
+    private fun applyTax(): Money = saleLine.item.shelfPrice + taxCharge
 
     private fun tax(): Money = saleLine.item.shelfPrice * saleLine.item.taxPercentage
 }
