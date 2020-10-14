@@ -18,5 +18,7 @@ data class Money(private val amount: BigDecimal){
         taxPercentage.chargeForAmount(amount)
         .let { Money(it) }
 
+    operator fun times(value: Int): Money = Money(amount.multiply(BigDecimal(value)))
+
     override fun equals(other: Any?): Boolean = other is Money && other.toString() == toString()
 }
