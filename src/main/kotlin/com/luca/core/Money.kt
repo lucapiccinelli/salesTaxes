@@ -5,7 +5,7 @@ import java.math.MathContext
 import java.math.RoundingMode
 import java.text.NumberFormat
 
-class Money(val amount: BigDecimal){
+class Money(private val amount: BigDecimal){
     constructor(amount: Double): this(BigDecimal(amount))
 
     override fun toString(): String {
@@ -14,7 +14,5 @@ class Money(val amount: BigDecimal){
 
     operator fun plus(money: Money): Money = Money(amount + money.amount)
 
-    operator fun times(taxPercentage: Tax): Money {
-        return Money(amount.multiply(BigDecimal(taxPercentage.percentage), MathContext(2, RoundingMode.HALF_UP)))
-    }
+    operator fun times(taxPercentage: Tax): Money = taxPercentage.chargeForAmount(amount)
 }
