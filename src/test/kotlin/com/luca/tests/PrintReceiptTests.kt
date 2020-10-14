@@ -21,12 +21,12 @@ class PrintReceiptTests {
     """.trimIndent()
 
     @TestFactory
-    internal fun `GIVEN a sale WHEN i request for a receipt THEN it strings as expected`() = listOf(
+    internal fun `GIVEN a sale WHEN i request for a receipt THEN it is printed as expected`() = listOf(
         sale1
     ).map{ (sale, expectedReceipt) ->
         DynamicTest.dynamicTest("receipt of $sale should be $expectedReceipt"){
             val receipt = sale.receipt()
-            receipt.toString() shouldBe expectedReceipt
+            StringReceiptPrinter.print(receipt) shouldBe expectedReceipt
         }
     }
 }
