@@ -1,7 +1,14 @@
 package com.luca.core
 
-import com.luca.core.SaleLine
+class Sale(private val saleLines: Collection<SaleLine>) {
+    companion object{
+        fun from(vararg saleLines: SaleLine) = Sale(saleLines.toList())
+    }
 
-class Sale(vararg saleLines: SaleLine) {
-    fun receipt(): Receipt = Receipt()
+    fun receipt(): Receipt {
+        return saleLines
+            .map { ReceiptLine(it) }
+            .let { Receipt(it) }
+    }
 }
+
