@@ -21,11 +21,13 @@ class PrintReceiptTests {
     """.trimIndent()
 
     private val sale2 = Sale.from(
-        SaleLine(2, Book("Harry Potter", Money(4)))
+        SaleLine(2, Book("Harry Potter", Money(4))),
+        SaleLine(2, GenericItem("fake banana", Money(1)))
     ) to  """
        2 book: 8.00
-       Sales Taxes: 0.00
-       Total: 8.00
+       2 fake banana: 2.20
+       Sales Taxes: 0.20
+       Total: 10.20
     """.trimIndent()
 
     @TestFactory
