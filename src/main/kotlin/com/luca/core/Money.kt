@@ -1,9 +1,12 @@
 package com.luca.core
 
 import java.math.BigDecimal
+import java.math.MathContext
+import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class Money(private val amount: BigDecimal){
+data class Money(private val amount: BigDecimal){
+
     constructor(amount: Double): this(BigDecimal(amount))
     constructor(amount: Int): this(BigDecimal(amount))
 
@@ -14,4 +17,6 @@ class Money(private val amount: BigDecimal){
     operator fun times(taxPercentage: Tax): Money =
         taxPercentage.chargeForAmount(amount)
         .let { Money(it) }
+
+    override fun equals(other: Any?): Boolean = other is Money && other.toString() == toString()
 }
