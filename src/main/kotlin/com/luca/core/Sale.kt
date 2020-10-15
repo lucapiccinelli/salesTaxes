@@ -6,7 +6,7 @@ class Sale(private val saleLines: Collection<SaleLine>) {
     }
 
     fun receipt(): Receipt = saleLines
-        .map { ReceiptLine(it) }
-        .let { Receipt(it) }
+        .map { saleLine -> ReceiptLine(saleLine) }
+        .let { receiptLines -> Receipt(receiptLines) }
 }
 
