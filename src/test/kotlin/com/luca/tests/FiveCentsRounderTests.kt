@@ -15,6 +15,8 @@ class FiveCentsRounderTests {
         "1.01,1.05",
         "1.05,1.05",
         "1.07,1.10",
+        "0.07,0.10",
+        "0.02,0.05",
     ])
     internal fun `GIVEN a value below the next 0_05 WHEN rounded THEN it should give the next 0_05`(belowValue: Double, next0_05Value: Double) {
         val rounded = FiveCentsRounder.round(BigDecimal.valueOf(belowValue))

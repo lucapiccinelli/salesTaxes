@@ -6,7 +6,7 @@ import java.math.RoundingMode
 
 data class Tax(private val percentage: Double){
     fun chargeForAmount(amount: BigDecimal): BigDecimal {
-        val rawPercentageApplication = amount.multiply(BigDecimal.valueOf(percentage), MathContext(3, RoundingMode.HALF_UP))
+        val rawPercentageApplication = amount.multiply(BigDecimal.valueOf(percentage))
         return FiveCentsRounder.round(rawPercentageApplication)
     }
 
