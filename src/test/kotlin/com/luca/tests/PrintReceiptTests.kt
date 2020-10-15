@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestFactory
 
 class PrintReceiptTests {
 
-    private val sale1 = Sale.from(
+    private val sale1: Pair<Sale, String> = Sale.from(
         SaleLine(1, Book("Harry Potter", Money(12.49))),
         SaleLine(1, GenericItem("music CD", Money(14.99))),
         SaleLine(1, Food("Chocolate bar", Money(0.85))),
@@ -20,7 +20,7 @@ class PrintReceiptTests {
        Total: 29.83
     """.trimIndent()
 
-    private val sale2 = Sale.from(
+    private val sale2: Pair<Sale, String> = Sale.from(
         SaleLine(2, Book("Harry Potter", Money(4))),
         SaleLine(2, GenericItem("fake banana", Money(1)))
     ) to  """
@@ -30,7 +30,7 @@ class PrintReceiptTests {
        Total: 10.20
     """.trimIndent()
 
-    private val sale3 = Sale.from(
+    private val sale3: Pair<Sale, String> = Sale.from(
         SaleLine(1, Imported(Food("box of chocolates", Money(10)))),
         SaleLine(1, Imported(GenericItem("bottle of perfume", Money(47.5))))
     ) to  """
@@ -40,7 +40,7 @@ class PrintReceiptTests {
        Total: 65.15
     """.trimIndent()
 
-    private val sale4 = Sale.from(
+    private val sale4: Pair<Sale, String> = Sale.from(
         SaleLine(1, Imported(GenericItem("bottle of perfume", Money(27.99)))),
         SaleLine(1, GenericItem("bottle of perfume", Money(18.99))),
         SaleLine(1, Medicine("packet of headache pills", Money(9.75))),
