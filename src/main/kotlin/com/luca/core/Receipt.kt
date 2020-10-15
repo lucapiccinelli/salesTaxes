@@ -7,4 +7,6 @@ class Receipt(val receiptLines: List<ReceiptLine>) {
 
     private fun sumByMoney(moneyField: (ReceiptLine) -> Money) =
         receiptLines.fold(Money(0)) { acc, receiptLine -> acc + moneyField(receiptLine) }
+
+    override fun toString(): String = StringReceiptPrinter.print(this)
 }

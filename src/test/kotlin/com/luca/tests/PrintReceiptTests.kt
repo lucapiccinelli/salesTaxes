@@ -63,7 +63,7 @@ class PrintReceiptTests {
     ).map{ (sale, expectedReceipt) ->
         DynamicTest.dynamicTest("receipt of $sale should be $expectedReceipt"){
             val receipt = sale.receipt()
-            StringReceiptPrinter.print(receipt) shouldBe expectedReceipt
+            receipt.toString() shouldBe expectedReceipt
         }
     }
 }
